@@ -4,9 +4,6 @@
 def rotate(nums, k):
     '''
     rotate the array to the right by k steps, k is non-negative
-
-    >>> rotate([1, 2, 3, 4, 5, 6], 3)
-    [4, 5, 6, 1, 2, 3]
     '''
     n = len(nums)
     k = k % n
