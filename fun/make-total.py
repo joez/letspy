@@ -28,11 +28,9 @@ if __name__ == '__main__':
     prices = list(reversed(sorted(map(int, input("Input prices: ").split()))))
     totals = list(map(int, input("Input totals: ").split()))
     common = mgcd(prices)
-    if common > 1:
-        prices = [x // common for x in prices]
-        # no solution if total can't be divided by common
-        totals = [x // common if x % common else None for x in totals]
+    scaled_prices = [x // common for x in prices] if common > 1 else prices
     for total in totals:
-        result = make_total(total, prices) if total else None
+        # no solution if total can't be divided by common
+        result = None if total % common else make_total(total // common, scaled_prices)
         output = " + ".join(f'{x}x{y}' for x,y in zip(result, prices) if x) if result else None
         print(f"{total}: {output}")
